@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> -->
+
+
+    <style>
+        .success,
+        .error {
+            color: white;
+            padding: 5px;
+            margin: 5px 0 15px 0;
+        }
+
+        .success {
+            background-color: green;
+        }
+
+        .error {
+            background: red;
+        }
+
+        .img-modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px;
+            height: 150px;
+        }
+
+        .modal-content,
+        #caption {
+            -webkit-animation-name: zoom;
+            -webkit-animation-duration: 0.6s;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+
+        @-webkit-keyframes zoom {
+            from {
+                -webkit-transform: scale(0)
+            }
+
+            to {
+                -webkit-transform: scale(1)
+            }
+        }
+
+        @keyframes zoom {
+            from {
+                transform: scale(0)
+            }
+
+            to {
+                transform: scale(1)
+            }
+        }
+
+        /* The Close Button */
+        .close-img {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close-img:hover,
+        .close-img:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* 100% Image Width on Smaller Screens */
+        @media only screen and (max-width: 700px) {
+            .modal-content {
+                width: 100%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand">Book Manager</a>
+            <div class="d-flex ">
+                <button class="local btn btn-outline-success mr-3" id="storeLocal">Store To Server</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="container-fluid">
+
+        <table class="table mb-0">
+            <tr>
+                <form action="" class="was-validated" id="book-form" enctype="multipart/form-data" novalidate>
+                    <td>
+                        <input type="text" class="form-control" placeholder="Book Title" maxlength="80" name="title"
+                            id="title" required />
+                        <div class="valid-tooltip">Please fill out this field.</div>
+                    </td>
+                    <td>
+                        <input placeholder="Author Name" maxlength="50" type="text" id="author" class="form-control"
+                            required>
+                    </td>
+                    <td>
+                        <input placeholder="ISBN No." maxlength="13" type="number" id="isbn" class="form-control"
+                            required>
+                    </td>
+                    <td>
+                        <input type="file" id="bookImg" class="form-control" required>
+                    </td>
+                    <td>
+                        <button type="submit" id="toastbtn" class="btn btn-outline-success w-100">Submit</button>
+                    </td>
+                </form>
+            </tr>
+        </table>
+
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th class="text-center">Id</th>
+                    <th class="text-center">Title</th>
+                    <th class="text-center">Author</th>
+                    <th class="text-center">ISBN No.</th>
+                    <th class="text-center">Profile Img</th>
+                    <th class="text-center">Update/Remove</th>
+                </tr>
+            </thead>
+            <tbody class="text-center" id="book-list">
+
+            </tbody>
+        </table>
+    </div>
+    <div class="container  mt-4">
+        <div class="row">
+            <div class="col align-self-center book-list-container">
+            </div>
+        </div>
+
+
+        <!-- Update Form -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <form action="" id="update-form">
+                        <div class="modal-body">
+                            <div class="">
+                                <label for="title" class="form-label font-weight-bold">Title</label>
+                                <input maxlength="80" type="text" id="update-title" class="form-control" required>
+                            </div>
+                            <div class="">
+                                <label for="author" class="form-label font-weight-bold">Author</label>
+                                <input maxlength="50" type="text" id="update-author" class="form-control" required>
+                            </div>
+                            <div class="">
+                                <label for="isbn" class="form-label font-weight-bold">ISBN No.</label>
+                                <input maxlength="13" type="number" id="update-isbn" class="form-control" required>
+                            </div>
+                            <div class="">
+                                <label for="isbn" class="form-label font-weight-bold">Profile Img.</label>
+                                <input type="file" id="updateBookImg" class="form-control">
+                            </div>
+                            <div class="">
+                                <input type="hidden" id="update-id" class="form-control">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Box -->
+        <div id="toastBox" class="mb-3 me-3 position-fixed bottom-0 end-0 toast-add toast text-white border-0"
+            role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div id="toastBody" class="toast-body">
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+        </div>
+
+        <!-- Img Model  -->
+        <div class="img-modal" id="imgModal">
+            <span class="close-img">&times;</span>
+            <img src="" class="modal-content" id="imgContainer" alt="">
+            <div id="caption"> </div>
+        </div>
+    </div>
+    <script src="./app.js"></script>
+</body>
+
+</html>
