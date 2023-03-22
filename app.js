@@ -118,11 +118,12 @@ function UI() { }
 
 UI.prototype.addBookToList = function (book) {
 	const row = document.createElement('tr');
+	row.className = 'book-item'
 	row.innerHTML = `
     <td id=${book.id}>${gobalIndex}</td>
-    <td>${book.title}</td>
-    <td>${book.author}</td>
-    <td>${book.isbn}</td>
+    <td class="book-item-block">${book.title}</td>
+    <td class="book-item-block">${book.author}</td>
+    <td class="book-item-block">${book.isbn}</td>
     <td><button type="button" id="visitImg" class="btn btn-secondary" onclick="viewImg(${book.id})"">Visit Image</button></td>
     <td><button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="updateBookList(${book.id})">Edit</button> <button type="button"   class="btn btn-danger delete">Delete</button></td>`;
 
@@ -312,4 +313,24 @@ function viewImg(imgid) {
 	let imgData = sessionStorage.getItem(imgid);
 	imgModal.style.display = "block";
 	imgContainer.src = imgData
+}
+
+document.getElementById('searchBox').addEventListener('keyup', filterBook);
+
+function filterBook(e) {
+	const text = e.target.value.toLowerCase();
+	console.log(text);
+	document.querySelectorAll('.book-item').forEach((book) => {
+		let bookBlock = book.querySelectorAll('.book-item-block');
+		console.log(bookBlock);
+		for (let index = 0; index < bookBlock.length; index++) {
+			if (bookBlock[index].innerHTML.indexOf(text) != -1) {
+				book.style.display = "";
+				break;
+			} else {
+				book.style.display = "none";
+			}
+
+		}
+	})
 }
