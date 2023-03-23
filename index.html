@@ -12,7 +12,8 @@
         referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js" crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
     <style>
@@ -109,6 +110,15 @@
         .search-table {
             z-index: -1;
         }
+
+        button:disabled {
+            opacity: 1 !important;
+        }
+
+        .sort-icon {
+            display: grid;
+            margin-left: 0.3rem;
+        }
     </style>
 
 </head>
@@ -154,15 +164,38 @@
         <table class="table">
             <thead class="table-dark">
                 <tr>
-                    <th class="text-center">Id</th>
-                    <th class="text-center">Title</th>
-                    <th class="text-center">Author</th>
-                    <th class="text-center">ISBN No.</th>
-                    <th class="text-center">Profile Img</th>
-                    <th class="text-center">Update/Remove</th>
+                    <th class="text-center"><button class="btn btn-dark d-flex m-auto " id="sortById">
+                            <p class="m-auto">Id</p>
+                            <div class="sort-icon"><i class="fa-solid fa-caret-up" style="color: #ffffff;"></i> <i
+                                    class="fa-solid fa-caret-down" style="color: #ffffff;"></i></div>
+                        </button> </th>
+                    <th class="text-center"><button class="btn btn-dark d-flex m-auto " id="sortByTitle">
+                            <p class="m-auto">Title</p>
+                            <div class="sort-icon"><i class="fa-solid fa-caret-up" style="color: #ffffff;"></i> <i
+                                    class="fa-solid fa-caret-down" style="color: #ffffff;"></i></div>
+                        </button> </th>
+
+                    <th class="text-center"><button class="btn btn-dark d-flex m-auto " id="sortByAuthor">
+                            <p class="m-auto">Author</p>
+                            <div class="sort-icon"><i class="fa-solid fa-caret-up" style="color: #ffffff;"></i> <i
+                                    class="fa-solid fa-caret-down" style="color: #ffffff;"></i></div>
+                        </button> </th>
+
+                    <th class="text-center"><button class="btn btn-dark d-flex m-auto " id="sortByIsbn">
+                            <p class="m-auto">ISBN No. </p>
+                            <div class="sort-icon"><i class="fa-solid fa-caret-up" style="color: #ffffff;"></i> <i
+                                    class="fa-solid fa-caret-down" style="color: #ffffff;"></i></div>
+                        </button> </th>
+
+                    <th class="text-center"><button class="btn btn-dark d-flex m-auto " disabled>
+                            <p class="m-auto">Profile Img </p>
+                        </button> </th>
+                    <th class="text-center"><button class="btn btn-dark d-flex m-auto " disabled>
+                            <p class="m-auto">Update/Remove </p>
+                        </button> </th>
                 </tr>
             </thead>
-            <tbody class="text-center" id="book-list">
+            <tbody class="text-center" id="bookList">
 
             </tbody>
         </table>
@@ -247,7 +280,7 @@
                                 <input placeholder="Search Here" id="searchBox" class="form-control">
                             </td>
                             <td>
-                                <input type="button" class="btn btn-primary form-control" value="Clear">
+                                <button class="btn btn-primary form-control" id="clearFilter">Clear </button>
                             </td>
                             <td>
                             </td>
@@ -257,7 +290,8 @@
             </div>
         </div>
     </div>
-    <script src="./app.js"></script>
+
+    <script src="./app.js" type="module"></script>
 </body>
 
 </html>
