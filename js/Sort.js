@@ -12,24 +12,26 @@ function sortList(val) {
         for (i = 0; i < (rows.length - 1); i++) {
             shouldSwitch = false;
             if (val == "title") {
-                x = rows[i].getElementsByClassName('book-item-block')[0];
-                y = rows[i + 1].getElementsByClassName('book-item-block')[0];
+                x = rows[i].getElementsByClassName('book-item-block')[0].innerHTML.toLowerCase();
+                y = rows[i + 1].getElementsByClassName('book-item-block')[0].innerHTML.toLowerCase();
             }
             if (val == "author") {
-                x = rows[i].getElementsByClassName('book-item-block')[1];
-                y = rows[i + 1].getElementsByClassName('book-item-block')[1];
+                x = rows[i].getElementsByClassName('book-item-block')[1].innerHTML.toLowerCase();
+                y = rows[i + 1].getElementsByClassName('book-item-block')[1].innerHTML.toLowerCase();
             }
 
             if (val == "isbn") {
-                x = rows[i].getElementsByClassName('book-item-block')[2];
-                y = rows[i + 1].getElementsByClassName('book-item-block')[2];
+                x = Number(rows[i].getElementsByClassName('book-item-block')[2].innerHTML.toLowerCase());
+                y = Number(rows[i + 1].getElementsByClassName('book-item-block')[2].innerHTML.toLowerCase());
+                console.log(x);
+                console.log(y);
             }
 
             if (val == "id") {
-                x = rows[i].getElementsByClassName('book-id')[0];
-                y = rows[i + 1].getElementsByClassName('book-id')[0];
+                x = rows[i].getElementsByClassName('book-id')[0].innerHTML.toLowerCase();
+                y = rows[i + 1].getElementsByClassName('book-id')[0].innerHTML.toLowerCase();
             }
-            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            if (x > y) {
                 shouldSwitch = true;
                 break;
             }
@@ -40,4 +42,5 @@ function sortList(val) {
         }
     }
 }
+
 export { sortList }
