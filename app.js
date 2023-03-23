@@ -178,3 +178,11 @@ function loadEventListeners() {
 	}
 	ui.showList();
 }
+
+window.addEventListener('beforeunload', (e) => {
+	let localList = new LocalList()
+	if (!localList.checkLocal()) {
+		e.preventDefault();
+		e.returnValue = 'Your Data Is Not Stored';
+	}
+})
