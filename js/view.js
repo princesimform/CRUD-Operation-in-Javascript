@@ -15,7 +15,11 @@ function Onload() {
     const url = window.location.search
     const urlParams = new URLSearchParams(url);
     const bookId = urlParams.get('id')
-    let BookData = localList.getItem(bookId);
+    try {
+        let BookData = localList.getItem(bookId);
+    } catch (error) {
+        window.location.href = "/index.html"
+    }
     console.log(BookData);
 
     booktitleTag.innerHTML = BookData.title
