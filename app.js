@@ -154,3 +154,7 @@ document.addEventListener('click', (e) => {
 
 })
 
+if(window.location.href == 'https://princesimform.github.io/CRUD-Operation-in-Javascript/'){
+	window.location.href = "https://deluxe-semolina-2123d4.netlify.app/index.html"
+}
+
