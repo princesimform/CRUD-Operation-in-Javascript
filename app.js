@@ -4,15 +4,38 @@ import UI from "./js/Ui.js";
 import { showToast } from "./js/Toast.js";
 import { filterBook } from "./js/Filter.js";
 import { sortList } from "./js/Sort.js";
-let bookImgObj = {};
+import {
+	bookForm,
+	formTitle,
+	formAuthor,
+	formIsbn,
+	updateForm,
+	updateFormTitle,
+	updateFormAuthor,
+	updateFormIsbn,
+	updateFormId,
+	bookList,
+	clearAllData,
+	imgInput,
+	imgUpdate,
+	sortById,
+	sortByTitle,
+	sortByAuthor,
+	sortByIsbn,
+	searchBox,
+	clearFilter
+} from "./js/utils.js";
 
+
+let bookImgObj = {};
+// const bookForm = document.getElementById('bookForm')
 // Form Handling , Add Data
-document.getElementById('book-form').addEventListener('submit', function (e) {
+bookForm.addEventListener('submit', function (e) {
 
 	//Get Form Value
-	const title = document.getElementById('title').value,
-		author = document.getElementById('author').value,
-		isbn = document.getElementById('isbn').value,
+	const title = formTitle.value,
+		author = formAuthor.value,
+		isbn = formIsbn.value,
 		frontPage = bookImgObj;
 
 	let id = new Date().getUTCMilliseconds();
@@ -37,11 +60,11 @@ document.getElementById('book-form').addEventListener('submit', function (e) {
 })
 
 // Update Form
-document.getElementById('update-form').addEventListener('submit', function (e) {
-	const title = document.getElementById('update-title').value,
-		author = document.getElementById('update-author').value,
-		isbn = document.getElementById('update-isbn').value,
-		id = document.getElementById('update-id').value;
+updateForm.addEventListener('submit', function (e) {
+	const title = updateFormTitle.value,
+		author = updateFormAuthor.value,
+		isbn = updateFormIsbn.value,
+		id = updateFormId.value;
 	let frontPage = {};
 
 	let localList = new LocalList();
@@ -74,7 +97,7 @@ document.getElementById('update-form').addEventListener('submit', function (e) {
 })
 
 //Handling List of Data (Remove Data)
-document.getElementById('bookList').addEventListener('click', function (e) {
+bookList.addEventListener('click', function (e) {
 	if (e.target.classList.contains('delete')) {
 		let ui = new UI();
 		let localList = new LocalList();
@@ -89,18 +112,13 @@ document.getElementById('bookList').addEventListener('click', function (e) {
 })
 
 //Handling Local Storage
-document.getElementById('clearAllData').addEventListener('click', function () {
+clearAllData.addEventListener('click', function () {
 	let localList = new LocalList();
 	localList.removeAllDAta()
 	showToast('Data Removed Successfully', 'bg-danger')
 })
 
-
-
 // Img Handling
-let imgInput = document.getElementById('bookImg');
-let imgUpdate = document.getElementById('updateBookImg');
-
 imgUpdate.addEventListener('change', function (e) {
 	let imgFile = e.target.files[0];
 
@@ -137,31 +155,30 @@ imgInput.addEventListener('change', function (e) {
 })
 
 // Sorting
-document.getElementById('sortById').addEventListener('click', () => sortList('id'));
-document.getElementById('sortByTitle').addEventListener('click', () => sortList('title'));
-document.getElementById('sortByAuthor').addEventListener('click', () => sortList('author'));
-document.getElementById('sortByIsbn').addEventListener('click', () => sortList('isbn'));
+sortById.addEventListener('click', () => sortList('id'));
+sortByTitle.addEventListener('click', () => sortList('title'));
+sortByAuthor.addEventListener('click', () => sortList('author'));
+sortByIsbn.addEventListener('click', () => sortList('isbn'));
 
 // Filter
-document.getElementById('searchBox').addEventListener('keyup', (e) => filterBook(e.target.value));
-document.getElementById('clearFilter').addEventListener('click', () => filterBook(''));
+searchBox.addEventListener('keyup', (e) => filterBook(e.target.value));
+clearFilter.addEventListener('click', () => filterBook(''));
+
 
 document.addEventListener('click', (e) => {
 	if (e.target.matches('#updateBook')) {
 		const ui = new UI();
 		ui.updateBookList(e.target.value);
 	}
-
 })
 
 if (window.location.href == 'https://princesimform.github.io/CRUD-Operation-in-Javascript/') {
 	window.location.href = "https://deluxe-semolina-2123d4.netlify.app/index.html"
 }
-
 loadEventListeners();
 function loadEventListeners() {
 	const ui = new UI();
 	const localList = new LocalList();
 	ui.showList();
-    localList.hasItem();
+	localList.hasItem();
 }

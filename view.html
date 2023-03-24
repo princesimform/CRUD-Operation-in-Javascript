@@ -29,17 +29,17 @@
 
     <div class="container mt-4">
         <div class="card">
-            <h5 class="card-header" id="title">Title</h5>
+            <h5 class="card-header" id="Booktitle">Title</h5>
             <div class="card-body">
                 <div class="d-flex justify-content-between ">
                     <div>
-                        <h5 class="card-title">Author : <span id="authorName"></span> </h5>
-                        <p class="card-text">ISBN No. <span id="isbnNo"></span></p>
+                        <h5 class="card-title">Author : <span id="BookauthorName"></span> </h5>
+                        <p class="card-text">ISBN No. <span id="BookisbnNo"></span></p>
 
                         <div>
                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                id="edit">EDIT</button>
-                            <button class="btn btn-danger" id="delete">Delete</button>
+                                id="updateBook">EDIT</button>
+                            <button class="btn btn-danger" id="deleteBook">Delete</button>
                         </div>
                     </div>
                     <div>
@@ -60,7 +60,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <form action="" id="update-form">
+                <form action="" id="updateForm">
                     <div class="modal-body">
                         <div class="">
                             <label for="title" class="form-label font-weight-bold">Title</label>

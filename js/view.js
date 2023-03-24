@@ -2,13 +2,13 @@ import LocalList from "./Local.js";
 import UI from "./Ui.js";
 import { showToast } from "./Toast.js";
 let bookImgObj = {};
-const imgUpdate = document.getElementById('updateBookImg');
-const titleTag = document.getElementById('title');
-const authorNameTag = document.getElementById('authorName');
-const isbnNoTag = document.getElementById('isbnNo');
-const bookImgTag = document.getElementById('bookImg');
-const editBtn = document.getElementById('edit');
-const DeleteBtn = document.getElementById('delete');
+import {
+    imgUpdate, booktitleTag, bookauthorNameTag, bookisbnNoTag, imgInput, updateBook, deleteBook, updateForm,
+    updateFormTitle,
+    updateFormAuthor,
+    updateFormIsbn,
+    updateFormId
+} from "./utils.js";
 
 function Onload() {
     const localList = new LocalList();
@@ -18,29 +18,29 @@ function Onload() {
     let BookData = localList.getItem(bookId);
     console.log(BookData);
 
-    titleTag.innerHTML = BookData.title
-    authorNameTag.innerHTML = BookData.author
-    isbnNoTag.innerHTML = BookData.isbn
-    bookImgTag.src = BookData.frontPage
-    editBtn.value = BookData.id
-    DeleteBtn.value = BookData.id
+    booktitleTag.innerHTML = BookData.title
+    bookauthorNameTag.innerHTML = BookData.author
+    bookisbnNoTag.innerHTML = BookData.isbn
+    imgInput.src = BookData.frontPage
+    updateBook.value = BookData.id
+    deleteBook.value = BookData.id
 
 }
 
 Onload();
 
-document.getElementById('edit').addEventListener('click', (e) => {
+updateBook.addEventListener('click', (e) => {
     const ui = new UI();
     ui.updateBookList(e.target.value);
 })
 
 
 // Update Form
-document.getElementById('update-form').addEventListener('submit', function (e) {
-    const title = document.getElementById('update-title').value,
-        author = document.getElementById('update-author').value,
-        isbn = document.getElementById('update-isbn').value,
-        id = document.getElementById('update-id').value;
+updateForm.addEventListener('submit', function (e) {
+    const title = updateFormTitle.value,
+        author = updateFormAuthor.value,
+        isbn = updateFormIsbn.value,
+        id = updateFormId.value;
     let frontPage = {};
 
     let localList = new LocalList();
@@ -89,7 +89,7 @@ imgUpdate.addEventListener('change', function (e) {
     }
 })
 
-document.getElementById('delete').addEventListener('click', (e) => {
+deleteBook.addEventListener('click', (e) => {
     const id = e.target.value;
     console.log();
     let localList = new LocalList();
