@@ -1,5 +1,14 @@
 import { showToast } from "./Toast.js";
 export default class LocalList {
+    hasItem() {
+        let data = localStorage.getItem('list');
+        if (data != '[]') {
+            console.log("Has Items");
+            document.getElementById('clearAllData').style.display = '';
+        } else {
+            document.getElementById('clearAllData').style.display = 'none';
+        }
+    }
 
     addItem(reqData) {
         let listData = [];
@@ -61,5 +70,10 @@ export default class LocalList {
 
         localStorage.setItem('list', JSON.stringify(listData));
         localStorage.removeItem(id);
+    }
+
+    removeAllDAta() {
+        let blankData = []
+        localStorage.setItem('list', JSON.stringify(blankData));
     }
 }

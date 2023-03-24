@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+    <div class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand">Book Manager</a>
+            <div class="d-flex ">
+                <a href="/index.html" class="local btn btn-secondary mr-3" id="back">Back</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="card">
+            <h5 class="card-header" id="title">Title</h5>
+            <div class="card-body">
+                <div class="d-flex justify-content-between ">
+                    <div>
+                        <h5 class="card-title">Author : <span id="authorName"></span> </h5>
+                        <p class="card-text">ISBN No. <span id="isbnNo"></span></p>
+
+                        <div>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                id="edit">EDIT</button>
+                            <button class="btn btn-danger" id="delete">Delete</button>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="" id="bookImg" width="500px" alt="">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update Form -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <form action="" id="update-form">
+                    <div class="modal-body">
+                        <div class="">
+                            <label for="title" class="form-label font-weight-bold">Title</label>
+                            <input maxlength="80" type="text" id="update-title" class="form-control" required>
+                        </div>
+                        <div class="">
+                            <label for="author" class="form-label font-weight-bold">Author</label>
+                            <input maxlength="50" type="text" id="update-author" class="form-control" required>
+                        </div>
+                        <div class="">
+                            <label for="isbn" class="form-label font-weight-bold">ISBN No.</label>
+                            <input maxlength="13" type="number" id="update-isbn" class="form-control" required>
+                        </div>
+                        <div class="">
+                            <label for="isbn" class="form-label font-weight-bold">Profile Img.</label>
+                            <input type="file" id="updateBookImg" class="form-control">
+                        </div>
+                        <div class="">
+                            <input type="hidden" id="update-id" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+        <!-- Toast Box -->
+        <div id="toastBox" class="z-3 mb-3 me-3 position-fixed bottom-0 end-0 toast-add toast text-white border-0"
+            role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div id="toastBody" class="toast-body">
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+        </div>
+    <script src="./js/view.js" type="module"></script>
+</body>
+
+</html>

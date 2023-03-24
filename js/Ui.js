@@ -13,7 +13,7 @@ export default class UI {
     <td class="book-item-block">${book.title}</td>
     <td class="book-item-block">${book.author}</td>
     <td class="book-item-block">${book.isbn}</td>
-    <td><button type="button" id="visitImg" class="btn btn-secondary"  value="${book.id}" >Visit Image</button></td>
+    <td><a type="button" id="visitImg" class="btn btn-secondary"  href="/view.html?id=${book.id}" >Visit Image</a></td>
     <td><button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"  id="updateBook" value="${book.id}" >Edit</button> <button type="button"   class="btn btn-danger delete">Delete</button></td>`;
         this.gobalIndex++;
         return row;

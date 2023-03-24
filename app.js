@@ -28,6 +28,8 @@ document.getElementById('book-form').addEventListener('submit', function (e) {
 		localList.addItem(book);
 		ui.showList();
 		ui.clearFields();
+		console.log()
+		localList.hasItem()
 	}
 
 	e.preventDefault();
@@ -77,14 +79,16 @@ document.getElementById('bookList').addEventListener('click', function (e) {
 		ui.showList();
 		ui.removeBookToList(e.target.parentElement.parentElement)
 		showToast('Data Remove', 'bg-danger')
+		localList.hasItem()
+
 	}
 })
 
 //Handling Local Storage
-document.getElementById('storeLocal').addEventListener('click', function () {
+document.getElementById('clearAllData').addEventListener('click', function () {
 	let localList = new LocalList();
-	localList.addItem();
-	showToast('Data Stored Successfully', 'bg-primary')
+	localList.removeAllDAta()
+	showToast('Data Removed Successfully', 'bg-danger')
 })
 
 
@@ -92,10 +96,6 @@ document.getElementById('storeLocal').addEventListener('click', function () {
 // Img Handling
 let imgInput = document.getElementById('bookImg');
 let imgUpdate = document.getElementById('updateBookImg');
-var imgModal = document.getElementById('imgModal');
-var visitImg = document.getElementById('visitImg');
-var imgContainer = document.getElementById('imgContainer');
-var span = document.getElementsByClassName('close-img')[0];
 
 imgUpdate.addEventListener('change', function (e) {
 	let imgFile = e.target.files[0];
@@ -132,10 +132,6 @@ imgInput.addEventListener('change', function (e) {
 	}
 })
 
-span.onclick = function () {
-	imgModal.style.display = "none"
-}
-
 // Sorting
 document.getElementById('sortById').addEventListener('click', () => sortList('id'));
 document.getElementById('sortByTitle').addEventListener('click', () => sortList('title'));
@@ -158,9 +154,3 @@ document.addEventListener('click', (e) => {
 
 })
 
-//Run Onload
-loadEventListeners();
-function loadEventListeners() {
-	const ui = new UI();
-	ui.showList();
-}
