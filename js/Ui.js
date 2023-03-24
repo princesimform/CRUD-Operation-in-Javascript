@@ -2,18 +2,17 @@ import LocalList from "./Local.js";
 export default class UI {
     constructor() {
         this.gobalIndex = 1;
-        this.viewImg = this.viewImg.bind(this);
     }
 
     addBookToList(book) {
         const row = document.createElement('tr');
         row.className = 'book-item'
         row.innerHTML = `
-    <td class="book-id" id=${book.id}>${this.gobalIndex}</td>
+    <td class="book-id book-item-block" id="${book.id}">${this.gobalIndex}</td>
     <td class="book-item-block">${book.title}</td>
     <td class="book-item-block">${book.author}</td>
     <td class="book-item-block">${book.isbn}</td>
-    <td><a type="button" id="visitImg" class="btn btn-secondary"  href="/view.html?id=${book.id}" >Visit Image</a></td>
+    <td><a type="button" id="visitImg" class="btn btn-secondary"  href="/view.html?id=${book.id}" >Visit</a></td>
     <td><button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"  id="updateBook" value="${book.id}" >Edit</button> <button type="button"   class="btn btn-danger delete">Delete</button></td>`;
         this.gobalIndex++;
         return row;
@@ -52,12 +51,5 @@ export default class UI {
         book.remove();
     }
 
-    viewImg(imgid) {
-        var imgContainer = document.getElementById('imgContainer');
-        var imgModal = document.getElementById('imgModal');
-        let imgData = localStorage.getItem(imgid);
-        console.log(imgData);
-        imgModal.style.display = "block";
-        imgContainer.src = imgData;
-    }
+
 }

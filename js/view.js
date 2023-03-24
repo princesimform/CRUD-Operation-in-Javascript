@@ -46,17 +46,18 @@ document.getElementById('update-form').addEventListener('submit', function (e) {
     let localList = new LocalList();
     const ui = new UI();
 
-    if (JSON.stringify(bookImgObj) == "{}") {
-        frontPage = localStorage.getItem(id)
-    } else {
-        frontPage = bookImgObj;
-    }
-
     console.log(frontPage);
     let oldData = localList.getItem(id);
-    if (oldData.author == author && oldData.isbn == isbn && oldData.title == title) {
+    if (oldData.author == author && oldData.isbn == isbn && oldData.title == title && JSON.stringify(bookImgObj) == '{}') {
         showToast('Please Update Data', 'bg-danger');
     } else {
+
+        if (JSON.stringify(bookImgObj) == "{}") {
+            frontPage = localStorage.getItem(id)
+        } else {
+            frontPage = bookImgObj;
+        }
+
         let reqData = { id: parseInt(id), title: title, author: author, isbn: isbn, frontPage: frontPage }
         try {
             localList.updateItem(reqData);

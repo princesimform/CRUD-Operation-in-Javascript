@@ -1,4 +1,5 @@
 import { showToast } from "./Toast.js";
+import UI from "./Ui.js";
 export default class LocalList {
     hasItem() {
         let data = localStorage.getItem('list');
@@ -75,5 +76,7 @@ export default class LocalList {
     removeAllDAta() {
         let blankData = []
         localStorage.setItem('list', JSON.stringify(blankData));
+        const ui = new UI();
+        ui.showList();
     }
 }

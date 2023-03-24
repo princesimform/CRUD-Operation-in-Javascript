@@ -29,7 +29,8 @@ document.getElementById('book-form').addEventListener('submit', function (e) {
 		ui.showList();
 		ui.clearFields();
 		console.log()
-		localList.hasItem()
+		localList.hasItem();
+		bookImgObj = {};
 	}
 
 	e.preventDefault();
@@ -46,15 +47,18 @@ document.getElementById('update-form').addEventListener('submit', function (e) {
 	let localList = new LocalList();
 	const ui = new UI();
 
-	if (JSON.stringify(bookImgObj) == "{}") {
-		frontPage = localStorage.getItem(id)
-	} else {
-		frontPage = bookImgObj;
-	}
+
 	let oldData = localList.getItem(id);
-	if (oldData.author == author && oldData.isbn == isbn && oldData.title == title) {
+	if (oldData.author == author && oldData.isbn == isbn && oldData.title == title && JSON.stringify(bookImgObj) == '{}') {
 		showToast('Please Update Data', 'bg-danger');
 	} else {
+
+		if (JSON.stringify(bookImgObj) == "{}") {
+			frontPage = localStorage.getItem(id)
+		} else {
+			frontPage = bookImgObj;
+		}
+
 		let reqData = { id: parseInt(id), title: title, author: author, isbn: isbn, frontPage: frontPage }
 		try {
 			localList.updateItem(reqData);
@@ -143,10 +147,6 @@ document.getElementById('searchBox').addEventListener('keyup', (e) => filterBook
 document.getElementById('clearFilter').addEventListener('click', () => filterBook(''));
 
 document.addEventListener('click', (e) => {
-	if (e.target.matches('#visitImg')) {
-		const ui = new UI();
-		ui.viewImg(e.target.value);
-	}
 	if (e.target.matches('#updateBook')) {
 		const ui = new UI();
 		ui.updateBookList(e.target.value);
@@ -154,7 +154,14 @@ document.addEventListener('click', (e) => {
 
 })
 
-if(window.location.href == 'https://princesimform.github.io/CRUD-Operation-in-Javascript/'){
+if (window.location.href == 'https://princesimform.github.io/CRUD-Operation-in-Javascript/') {
 	window.location.href = "https://deluxe-semolina-2123d4.netlify.app/index.html"
 }
 
+loadEventListeners();
+function loadEventListeners() {
+	const ui = new UI();
+	const localList = new LocalList();
+	ui.showList();
+    localList.hasItem();
+}
