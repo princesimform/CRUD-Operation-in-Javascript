@@ -1,4 +1,3 @@
-import SessionList from "./js/Session.js";
 import LocalList from "./js/Local.js";
 import Book from "./js/Book.js";
 import UI from "./js/Ui.js";
@@ -21,16 +20,14 @@ document.getElementById('book-form').addEventListener('submit', function (e) {
 
 	// Objects
 	const ui = new UI();
-	const sessionList = new SessionList();
 	const localList = new LocalList();
 	// Validate Field 
 	if (title == '' || author == '' || isbn == '' || JSON.stringify(frontPage) == "{}") {
 		showToast('Please fill in all fields ', 'bg-danger')
 	} else {
-		sessionList.addItem(book);
+		localList.addItem(book);
 		ui.showList();
 		ui.clearFields();
-		localList.checkLocal();
 	}
 
 	e.preventDefault();
@@ -44,27 +41,24 @@ document.getElementById('update-form').addEventListener('submit', function (e) {
 		id = document.getElementById('update-id').value;
 	let frontPage = {};
 
-	let sessionList = new SessionList();
 	let localList = new LocalList();
 	const ui = new UI();
 
 	if (JSON.stringify(bookImgObj) == "{}") {
-		frontPage = sessionStorage.getItem(id)
+		frontPage = localList.getItem(id)
 	} else {
 		frontPage = bookImgObj;
 	}
-	let oldData = sessionList.getItem(id);
+	let oldData = localList.getItem(id);
 	if (oldData.author == author && oldData.isbn == isbn && oldData.title == title) {
 		showToast('Please Update Data', 'bg-danger');
 	} else {
 		let reqData = { id: parseInt(id), title: title, author: author, isbn: isbn, frontPage: frontPage }
 		try {
-			sessionList.updateItem(reqData);
+			localList.updateItem(reqData);
 			ui.showList();
 			showToast('Data Updated', 'bg-primary')
-			localList.checkLocal();
 			$('#exampleModal').modal('toggle');
-
 		} catch (error) {
 			showToast('Something Went Wrong', 'bg-danger')
 		}
@@ -77,13 +71,11 @@ document.getElementById('update-form').addEventListener('submit', function (e) {
 document.getElementById('bookList').addEventListener('click', function (e) {
 	if (e.target.classList.contains('delete')) {
 		let ui = new UI();
-		let sessionList = new SessionList();
 		let localList = new LocalList();
 		let id = e.target.parentElement.parentElement.children[0].id;
-		sessionList.removeItem(id);
+		localList.removeItem(id);
 		ui.showList();
 		ui.removeBookToList(e.target.parentElement.parentElement)
-		localList.checkLocal();
 		showToast('Data Remove', 'bg-danger')
 	}
 })
@@ -170,19 +162,5 @@ document.addEventListener('click', (e) => {
 loadEventListeners();
 function loadEventListeners() {
 	const ui = new UI();
-	let localList = new LocalList()
-	// localStorage.clear();
-	// sessionStorage.clear();
-	if (!localList.checkLocal()) {
-		sessionStorage.setItem('list', localStorage.getItem('list'));
-	}
 	ui.showList();
 }
-
-window.addEventListener('beforeunload', (e) => {
-	let localList = new LocalList()
-	if (!localList.checkLocal()) {
-		e.preventDefault();
-		e.returnValue = 'Your Data Is Not Stored';
-	}
-})

@@ -1,4 +1,4 @@
-import SessionList from "./Session.js";
+import LocalList from "./Local.js";
 export default class UI {
     constructor() {
         this.gobalIndex = 1;
@@ -20,8 +20,8 @@ export default class UI {
     }
 
     updateBookList(bookID) {
-        const sessionList = new SessionList();
-        let res = sessionList.getItem(bookID);
+        const localList = new LocalList();
+        let res = localList.getItem(bookID);
         document.getElementById('update-title').value = res.title;
         document.getElementById('update-author').value = res.author;
         document.getElementById('update-isbn').value = res.isbn;
@@ -30,7 +30,7 @@ export default class UI {
 
     showList() {
         this.gobalIndex = 1;
-        const listData = JSON.parse(sessionStorage.getItem('list'));
+        const listData = JSON.parse(localStorage.getItem('list'));
         const list = document.getElementById('bookList');
         list.innerHTML = '';
         if (listData !== null) {
@@ -55,7 +55,8 @@ export default class UI {
     viewImg(imgid) {
         var imgContainer = document.getElementById('imgContainer');
         var imgModal = document.getElementById('imgModal');
-        let imgData = sessionStorage.getItem(imgid);
+        let imgData = localStorage.getItem(imgid);
+        console.log(imgData);
         imgModal.style.display = "block";
         imgContainer.src = imgData;
     }
