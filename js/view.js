@@ -47,7 +47,7 @@ document.getElementById('update-form').addEventListener('submit', function (e) {
     const ui = new UI();
 
     if (JSON.stringify(bookImgObj) == "{}") {
-        frontPage = localList.getItem(id)
+        frontPage = localStorage.getItem(id)
     } else {
         frontPage = bookImgObj;
     }
@@ -93,11 +93,10 @@ document.getElementById('delete').addEventListener('click', (e) => {
     console.log();
     let localList = new LocalList();
     try {
-		localList.removeItem(id);
+        localList.removeItem(id);
         window.location.href = '/index.html';
     } catch (error) {
         console.log(error);
         showToast('Something Went Wrong', 'bg-danger')
     }
-
 })

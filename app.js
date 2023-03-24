@@ -47,7 +47,7 @@ document.getElementById('update-form').addEventListener('submit', function (e) {
 	const ui = new UI();
 
 	if (JSON.stringify(bookImgObj) == "{}") {
-		frontPage = localList.getItem(id)
+		frontPage = localStorage.getItem(id)
 	} else {
 		frontPage = bookImgObj;
 	}
