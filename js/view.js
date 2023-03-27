@@ -21,12 +21,12 @@ function Onload() {
   } catch (error) {
     window.location.href = "/index.html"
   }
-  console.log(BookData);
 
   booktitleTag.innerHTML = BookData.title
   bookauthorNameTag.innerHTML = BookData.author
   bookisbnNoTag.innerHTML = BookData.isbn
   imgInput.src = BookData.frontPage
+  imgInput.style.backgroundImage = `url('${BookData.frontPage}')`
   updateBook.value = BookData.id
   deleteBook.value = BookData.id
 
@@ -51,7 +51,6 @@ updateForm.addEventListener('submit', function (e) {
   let localList = new LocalList();
   const ui = new UI();
 
-  console.log(frontPage);
   let oldData = localList.getItem(id);
   if (oldData.author == author && oldData.isbn == isbn && oldData.title == title && JSON.stringify(bookImgObj) == '{}') {
     showToast('Please Update Data', 'bg-danger');
@@ -70,7 +69,6 @@ updateForm.addEventListener('submit', function (e) {
       Onload();
       $('#exampleModal').modal('toggle');
     } catch (error) {
-      console.log(error);
       showToast('Something Went Wrong', 'bg-danger')
     }
   }
@@ -96,13 +94,11 @@ imgUpdate.addEventListener('change', function (e) {
 
 deleteBook.addEventListener('click', (e) => {
   const id = e.target.value;
-  console.log();
   let localList = new LocalList();
   try {
     localList.removeItem(id);
     window.location.href = '/index.html';
   } catch (error) {
-    console.log(error);
     showToast('Something Went Wrong', 'bg-danger')
   }
 })

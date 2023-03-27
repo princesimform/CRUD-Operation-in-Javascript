@@ -17,8 +17,6 @@
 
 
     <style>
-        
-
         .modal-content {
             margin: auto;
             display: block;
@@ -37,6 +35,19 @@
         @media only screen and (max-width: 700px) {
             .modal-content {
                 width: 100%;
+            }
+
+            .author,
+            .isbn {
+                display: none;
+            }
+
+            .input-form {
+                display: grid;
+            }
+
+            .navbar > .container-fluid {
+                justify-content: center;
             }
         }
 
@@ -73,7 +84,7 @@
     <div class="container-fluid">
 
         <table class="table mb-0">
-            <tr>
+            <tr class="input-form">
                 <form action="" class="was-validated" id="bookForm" enctype="multipart/form-data" novalidate>
                     <td>
                         <input type="text" class="form-control" placeholder="Book Title" maxlength="80" name="title"
@@ -101,33 +112,33 @@
         <table class="table">
             <thead class="table-dark">
                 <tr>
-                    <th class="text-center"><button class="btn btn-dark d-flex m-auto " id="sortById">
+                    <th class="text-center"><button class="btn btn-dark d-flex m-auto  asc" id="sortById">
                             <p class="m-auto">Id</p>
                             <div class="sort-icon"><i class="fa-solid fa-caret-up" style="color: #ffffff;"></i> <i
                                     class="fa-solid fa-caret-down" style="color: #ffffff;"></i></div>
                         </button> </th>
-                    <th class="text-center"><button class="btn btn-dark d-flex m-auto " id="sortByTitle">
+                    <th class="text-center"><button class="btn btn-dark d-flex m-auto asc" id="sortByTitle">
                             <p class="m-auto">Title</p>
                             <div class="sort-icon"><i class="fa-solid fa-caret-up" style="color: #ffffff;"></i> <i
                                     class="fa-solid fa-caret-down" style="color: #ffffff;"></i></div>
                         </button> </th>
 
-                    <th class="text-center"><button class="btn btn-dark d-flex m-auto " id="sortByAuthor">
+                    <th class="text-center author"><button class="btn btn-dark d-flex m-auto asc" id="sortByAuthor">
                             <p class="m-auto">Author</p>
                             <div class="sort-icon"><i class="fa-solid fa-caret-up" style="color: #ffffff;"></i> <i
                                     class="fa-solid fa-caret-down" style="color: #ffffff;"></i></div>
                         </button> </th>
 
-                    <th class="text-center"><button class="btn btn-dark d-flex m-auto " id="sortByIsbn">
+                    <th class="text-center isbn"><button class="btn btn-dark d-flex m-auto asc" id="sortByIsbn">
                             <p class="m-auto">ISBN No. </p>
                             <div class="sort-icon"><i class="fa-solid fa-caret-up" style="color: #ffffff;"></i> <i
                                     class="fa-solid fa-caret-down" style="color: #ffffff;"></i></div>
                         </button> </th>
 
-                    <th class="text-center"><button class="btn btn-dark d-flex m-auto " disabled>
+                    <th class="text-center"><button class="btn btn-dark d-flex m-auto asc" disabled>
                             <p class="m-auto">Profile Img </p>
                         </button> </th>
-                    <th class="text-center"><button class="btn btn-dark d-flex m-auto " disabled>
+                    <th class="text-center"><button class="btn btn-dark d-flex m-auto asc" disabled>
                             <p class="m-auto">Update/Remove </p>
                         </button> </th>
                 </tr>

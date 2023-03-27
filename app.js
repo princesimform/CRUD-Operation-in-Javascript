@@ -51,7 +51,6 @@ bookForm.addEventListener('submit', function (e) {
 		localList.addItem(book);
 		ui.showList();
 		ui.clearFields();
-		console.log()
 		localList.hasItem();
 		bookImgObj = {};
 	}
@@ -135,7 +134,6 @@ imgUpdate.addEventListener('change', function (e) {
 })
 imgInput.addEventListener('change', function (e) {
 	let imgFile = e.target.files[0];
-	console.log(imgFile);
 	if (e.target.files[0].size <= 200000) {
 		if (imgFile.type == 'image/png' || imgFile.type == 'image/jpeg' || imgFile.type == 'image/jpg' || imgFile.type == 'image/gif') {
 			const reader = new FileReader();
@@ -155,10 +153,10 @@ imgInput.addEventListener('change', function (e) {
 })
 
 // Sorting
-sortById.addEventListener('click', () => sortList('id'));
-sortByTitle.addEventListener('click', () => sortList('title'));
-sortByAuthor.addEventListener('click', () => sortList('author'));
-sortByIsbn.addEventListener('click', () => sortList('isbn'));
+sortById.addEventListener('click', () => sortList('sortById'));
+sortByTitle.addEventListener('click', () => sortList('sortByTitle'));
+sortByAuthor.addEventListener('click', () => sortList('sortByAuthor'));
+sortByIsbn.addEventListener('click', () => sortList('sortByIsbn'));
 
 // Filter
 searchBox.addEventListener('keyup', (e) => filterBook(e.target.value));

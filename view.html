@@ -15,6 +15,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <style>
+        .profile-block {
+            display: flex;
+        }
+
+        @media only screen and (max-width: 700px) {
+            .profile-block {
+                display: block;
+            }
+        }
+
+        .thumb-img {
+            display: block;
+            border-radius: 0.4rem;
+            height: 100%;
+            width: 100%;
+            background-position: center top;
+            background-size: cover;
+            background-repeat: no-repeat;
+            transition: all 0.6s ease;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -29,28 +52,25 @@
 
     <div class="container mt-4">
         <div class="card">
-            <h5 class="card-header" id="Booktitle">Title</h5>
-            <div class="card-body">
-                <div class="d-flex justify-content-between ">
+            <div class="card-body row">
+                <div class="col-md-8 ">
+                    <h4>Title : <span id="Booktitle"></span></h4>
+                    <p>Author : <span id="BookauthorName"></span></p>
+                    <p>ISBN No. : <span id="BookisbnNo"></span></p>
                     <div>
-                        <h5 class="card-title">Author : <span id="BookauthorName"></span> </h5>
-                        <p class="card-text">ISBN No. <span id="BookisbnNo"></span></p>
-
-                        <div>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                id="updateBook">EDIT</button>
-                            <button class="btn btn-danger" id="deleteBook">Delete</button>
-                        </div>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            id="updateBook">EDIT</button>
+                        <button class="btn btn-danger" id="deleteBook">Delete</button>
                     </div>
-                    <div>
-                        <img src="" id="bookImg" width="500px" alt="">
-                    </div>
-
+                </div>
+                <div class="col-md-4">
+                    <span class="thumb-img-container ">
+                            <img  class="thumb-img thumb-img-1" src="" id="bookImg" alt="" srcset="">
+                    </span>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Update Form -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -93,16 +113,16 @@
     </div>
 
 
-        <!-- Toast Box -->
-        <div id="toastBox" class="z-3 mb-3 me-3 position-fixed bottom-0 end-0 toast-add toast text-white border-0"
-            role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-                <div id="toastBody" class="toast-body">
-                </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                    aria-label="Close"></button>
+    <!-- Toast Box -->
+    <div id="toastBox" class="z-3 mb-3 me-3 position-fixed bottom-0 end-0 toast-add toast text-white border-0"
+        role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div id="toastBody" class="toast-body">
             </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                aria-label="Close"></button>
         </div>
+    </div>
     <script src="./js/view.js" type="module"></script>
 </body>
 

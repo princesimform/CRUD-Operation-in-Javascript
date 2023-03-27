@@ -5,7 +5,6 @@ export default class LocalList {
     hasItem() {
         let data = localStorage.getItem('list');
         if (data != '[]') {
-            console.log("Has Items");
             clearAllData.style.display = '';
         } else {
             clearAllData.style.display = 'none';
@@ -42,7 +41,6 @@ export default class LocalList {
             }
         });
         data[0].frontPage = localStorage.getItem(id);
-        console.log(data);
         return data[0];
     }
 

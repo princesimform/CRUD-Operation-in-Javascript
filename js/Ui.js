@@ -11,8 +11,8 @@ export default class UI {
         row.innerHTML = `
     <td class="book-id filter-block" id="${book.id}">${this.gobalIndex}</td>
     <td class="book-item-block filter-block">${book.title}</td>
-    <td class="book-item-block filter-block">${book.author}</td>
-    <td class="book-item-block filter-block">${book.isbn}</td>
+    <td class="book-item-block filter-block author">${book.author}</td>
+    <td class="book-item-block filter-block isbn">${book.isbn}</td>
     <td><a type="button" id="visitImg" class="btn btn-secondary"  href="/view.html?id=${book.id}" >Visit</a></td>
     <td><button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"  id="updateBook" value="${book.id}" >Edit</button> <button type="button"   class="btn btn-danger delete">Delete</button></td>`;
         this.gobalIndex++;
