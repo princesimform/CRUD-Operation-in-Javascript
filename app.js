@@ -177,6 +177,7 @@ loadEventListeners();
 function loadEventListeners() {
 	const ui = new UI();
 	const localList = new LocalList();
+	console.log(localList.hasItem());
 	ui.showList();
 	localList.hasItem();
 }

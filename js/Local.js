@@ -1,13 +1,17 @@
 import { showToast } from "./Toast.js";
-import { clearAllData } from "./utils.js";
+import { clearAllData , noDataImg} from "./utils.js";
 import UI from "./Ui.js";
 export default class LocalList {
     hasItem() {
         let data = localStorage.getItem('list');
         if (data != '[]') {
+            noDataImg.style.display = "none";
             clearAllData.style.display = '';
+            return true
         } else {
+            noDataImg.style.display = "block";
             clearAllData.style.display = 'none';
+            return false
         }
     }
 

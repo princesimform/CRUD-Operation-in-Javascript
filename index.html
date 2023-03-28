@@ -46,17 +46,17 @@
                 display: grid;
             }
 
-            .navbar > .container-fluid {
+            .navbar>.container-fluid {
                 justify-content: center;
             }
         }
 
         #toastBox {
-            z-index: 99;
+            z-index: 100;
         }
 
         .search-table {
-            z-index: -1;
+            z-index: 11;
         }
 
         button:disabled {
@@ -66,6 +66,18 @@
         .sort-icon {
             display: grid;
             margin-left: 0.3rem;
+        }
+
+        #searchHere {
+            z-index: 50;
+        }
+
+        #noData {
+            margin: auto;
+            justify-content: center;
+        }
+        #noData img {
+            margin: auto;
         }
     </style>
 
@@ -147,6 +159,9 @@
 
             </tbody>
         </table>
+        <div id="noData">
+            <img src="./no_data.jpg" alt="" id="noDataImg">
+        </div>
     </div>
     <div class="container  mt-4">
         <div class="row">
@@ -209,7 +224,7 @@
     </div>
 
 
-    <div class="  container mt-4">
+    <div class="  container mt-4" id="searchHere">
         <div class="search-table fixed-bottom  bg-dark">
             <div class="container-fluid">
                 <table class="table mb-0 border border-dark">

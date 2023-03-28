@@ -24,7 +24,7 @@ const updateBook = document.getElementById('updateBook');
 const deleteBook = document.getElementById('deleteBook');
 const toastBody = document.getElementById('toastBody');
 const toastBox = document.getElementById('toastBox');
-
+const noDataImg = document.getElementById('noDataImg');
 export {
     bookForm,
     formTitle,
@@ -51,5 +51,6 @@ export {
     updateBook,
     deleteBook,
     toastBody,
-    toastBox
+    toastBox,
+    noDataImg
 }
