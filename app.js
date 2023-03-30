@@ -67,8 +67,6 @@ updateForm.addEventListener('submit', function (e) {
 
 	let localList = new LocalList();
 	const ui = new UI();
-
-
 	let oldData = localList.getItem(id);
 	if (oldData.author == author && oldData.isbn == isbn && oldData.title == title && JSON.stringify(bookImgObj) == '{}') {
 		showToast('Please Update Data', 'bg-danger');
@@ -84,6 +82,8 @@ updateForm.addEventListener('submit', function (e) {
 		try {
 			localList.updateItem(reqData);
 			ui.showList();
+			ui.updateListAlert(reqData.id)
+
 			showToast('Data Updated', 'bg-primary')
 			$('#exampleModal').modal('toggle');
 		} catch (error) {

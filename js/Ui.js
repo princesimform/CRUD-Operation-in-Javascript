@@ -41,6 +41,24 @@ export default class UI {
         }
     }
 
+    updateListAlert(id) {
+        let list = bookList.getElementsByTagName('tr');
+        for (let i = 0; i < list.length; i++) {
+            const trElement = list[i]
+            const tdElement = list[i].getElementsByTagName('td');
+            const tdElementId = tdElement[0].id;
+            if (tdElementId == id) {
+                console.log(tdElementId);
+                trElement.classList.add('bg-success');
+                trElement.classList.add('bg-opacity-25')
+                setTimeout(() => {
+                    trElement.classList.remove('bg-success')
+                    trElement.classList.remove('bg-opacity-25')
+                }, 2000);
+            }
+        }
+    }
+
     clearFields() {
         formTitle.value = "";
         formAuthor.value = "";
