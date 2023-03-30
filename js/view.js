@@ -3,7 +3,14 @@ import UI from "./Ui.js";
 import { showToast } from "./Toast.js";
 let bookImgObj = {};
 import {
-  imgUpdate, booktitleTag, bookauthorNameTag, bookisbnNoTag, imgInput, updateBook, deleteBook, updateForm,
+  imgUpdate,
+  booktitleTag,
+  bookauthorNameTag,
+  bookisbnNoTag,
+  imgInput,
+  updateBook,
+  deleteBook,
+  updateForm,
   updateFormTitle,
   updateFormAuthor,
   updateFormIsbn,
