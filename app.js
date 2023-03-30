@@ -26,7 +26,6 @@ import {
 	clearFilter
 } from "./js/utils.js";
 
-
 let bookImgObj = {};
 // const bookForm = document.getElementById('bookForm')
 // Form Handling , Add Data
@@ -98,23 +97,31 @@ updateForm.addEventListener('submit', function (e) {
 //Handling List of Data (Remove Data)
 bookList.addEventListener('click', function (e) {
 	if (e.target.classList.contains('delete')) {
-		let ui = new UI();
-		let localList = new LocalList();
-		let id = e.target.parentElement.parentElement.children[0].id;
-		localList.removeItem(id);
-		ui.showList();
-		ui.removeBookToList(e.target.parentElement.parentElement)
-		showToast('Data Remove', 'bg-danger')
-		localList.hasItem()
-
+		var result = confirm("Are you Sure");
+		if (result) {
+			let ui = new UI();
+			let localList = new LocalList();
+			let id = e.target.parentElement.parentElement.children[0].id;
+			localList.removeItem(id);
+			ui.showList();
+			ui.removeBookToList(e.target.parentElement.parentElement)
+			showToast('Data Remove', 'bg-danger')
+			localList.hasItem()
+		}
+	} else {
 	}
+
 })
 
-//Handling Local Storage
+//Clear Local Storage
 clearAllData.addEventListener('click', function () {
-	let localList = new LocalList();
-	localList.removeAllDAta()
-	showToast('Data Removed Successfully', 'bg-danger')
+	var result = confirm("Are you Sure");
+	if (result) {
+		let localList = new LocalList();
+		localList.removeAllDAta()
+		showToast('Data Removed Successfully', 'bg-danger')
+	}
+
 })
 
 // Img Handling

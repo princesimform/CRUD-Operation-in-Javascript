@@ -93,12 +93,16 @@ imgUpdate.addEventListener('change', function (e) {
 })
 
 deleteBook.addEventListener('click', (e) => {
-  const id = e.target.value;
-  let localList = new LocalList();
-  try {
-    localList.removeItem(id);
-    window.location.href = '/index.html';
-  } catch (error) {
-    showToast('Something Went Wrong', 'bg-danger')
+  var result = confirm("Are you Sure");
+  if (result) {
+    const id = e.target.value;
+    let localList = new LocalList();
+    try {
+      localList.removeItem(id);
+      window.location.href = '/index.html';
+    } catch (error) {
+      showToast('Something Went Wrong', 'bg-danger')
+    }
   }
+
 })
